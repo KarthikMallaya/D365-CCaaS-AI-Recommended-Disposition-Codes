@@ -194,14 +194,14 @@ At an average loaded agent cost of $25–40/hour, the **moderate scenario** repr
 
 ### Component Inventory
 
-| # | Component | Type | Unique Name / ID | Purpose |
-|---|-----------|------|-------------------|---------|
-| 1 | **Disposition Recommender** | Cloud Flow (Power Automate) | `{ea73f750-74dd-f011-8543-000d3a3007f4}` | Orchestrates the polling-for-summary + AI classification pipeline |
+| # | Component | Type | Unique Name | Purpose |
+|---|-----------|------|-------------|---------|
+| 1 | **Disposition Recommender** | Cloud Flow (Power Automate) | Disposition Recommender | Orchestrates the polling-for-summary + AI classification pipeline |
 | 2 | **Disposition Recommendation** | Custom Page (Canvas App) | `ccaasfde_dispositionrecommendation_d051d` | Agent-facing modal UI — displays recommendations, handles code selection and save |
-| 3 | **Disposition code classifier** | AI Builder Prompt (AI Model) | `{98737408-057e-42a8-bbcd-12134a4c64e0}` | GPT-4.1-mini prompt that classifies conversation summaries against disposition codes |
+| 3 | **Disposition code classifier** | AI Builder Prompt (AI Model) | Disposition code classifier | GPT-4.1-mini prompt that classifies conversation summaries against disposition codes |
 | 4 | **Form Handler** | JavaScript Web Resource (v2.1) | `ccaasfde_dispositioncodeformhandler` | Detects conversation end via CIF, opens modal, manages lifecycle |
-| 5 | **Active Conversation form** | Form Customization | `{5fe86453-73ea-4821-b6dd-ddc06e1755a1}` | Registers JS handler on `onLoad` event (ordinal position 7) |
-| 6 | **Connection Reference** | Dataverse Connection | `{98737408-057e-42a8-bbcd-12134a4c64e0}` | Shared Dataverse connection used by the Cloud Flow |
+| 5 | **Active Conversation form** | Form Customization | Active Conversation (`msdyn_ocliveworkitem`) | Registers JS handler on `onLoad` event (ordinal position 7) |
+| 6 | **Connection Reference** | Dataverse Connection | `shared_commondataserviceforapps` | Shared Dataverse connection used by the Cloud Flow |
 
 ### Component Dependency Map
 
@@ -383,7 +383,6 @@ Agent        Form Handler (JS)     Custom Page        Cloud Flow        Datavers
 | Property | Value |
 |----------|-------|
 | **AI Model Name** | Disposition code classifier |
-| **AI Model ID** | `{98737408-057e-42a8-bbcd-12134a4c64e0}` |
 | **Template** | AI Builder Custom Prompt (Dynamic Prompt v2) |
 | **Underlying Model** | GPT-4.1-mini |
 | **Temperature** | 0 (fully deterministic) |
